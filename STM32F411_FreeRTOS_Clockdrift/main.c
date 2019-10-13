@@ -25,6 +25,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include <string.h>
+#include "stm32_hal_legacy.h"
 
 /* USER CODE BEGIN Includes */
 
@@ -99,8 +100,8 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   // Start scheduler
-  xTaskCreate((void *)LED_BLINK_Task, "Task 1", configMINIMAL_STACK_SIZE, NULL, 1, NULL );
-  xTaskCreate((void *)UART_TransmitText_Task, "Task 2", configMINIMAL_STACK_SIZE, NULL, 1, NULL );
+ // xTaskCreate((void *)LED_BLINK_Task, "Task 1", configMINIMAL_STACK_SIZE, NULL, 1, NULL );
+  xTaskCreate((void *)UART_TransmitText_Task, "Task 1", configMINIMAL_STACK_SIZE, NULL, 1, NULL );
   vTaskStartScheduler();
 
   
@@ -134,6 +135,7 @@ void SystemClock_Config(void)
   /** Configure the main internal regulator output voltage 
   */
   __HAL_RCC_PWR_CLK_ENABLE();
+	
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
   /** Initializes the CPU, AHB and APB busses clocks 
   */
@@ -201,15 +203,13 @@ static void MX_USART1_UART_Init(void)
 void UART_TransmitText_Task(void const *argument)
 {
 	for (;;) {
+
 		char message[] = "Teschzt\r\n";
-	    if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_1))
-        {
-			HAL_UART_Transmit(&huart1, (uint8_t*)message, strlen(message), 0xFFFF);
-		}
+		HAL_UART_Transmit(&huart1, (uint8_t*)message, strlen(message), 1000);
 		vTaskDelay(1000);
 	}
 	
-}
+} 
 
 /**
   * @brief GPIO Initialization Function
@@ -249,8 +249,22 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
+	
+  __USART1_CLK_ENABLE();
+	  
+  GPIO_InitStruct.Pin = GPIO_PIN_9;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+     
+  GPIO_InitStruct.Pin = GPIO_PIN_10;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);	  
+	  
+  }
 
-}
+
 
 
 /**

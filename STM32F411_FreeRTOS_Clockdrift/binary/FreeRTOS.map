@@ -117,6 +117,8 @@ Discarded input sections
  .text          0x0000000000000000        0x0 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
  .data          0x0000000000000000        0x0 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
  .bss           0x0000000000000000        0x0 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
+ .text.LED_BLINK_Task
+                0x0000000000000000       0x20 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
  .text          0x0000000000000000        0x0 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/syscalls.o
  .data          0x0000000000000000        0x0 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/syscalls.o
  .bss           0x0000000000000000        0x0 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/syscalls.o
@@ -637,7 +639,7 @@ Discarded input sections
                 0x0000000000000000       0x6c /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_dma.o
  .text.DMA_CheckFifoParam
                 0x0000000000000000       0xf8 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_dma.o
- .rodata.flagBitshiftOffset.7538
+ .rodata.flagBitshiftOffset.7653
                 0x0000000000000000        0x8 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_dma.o
  .debug_info    0x0000000000000000      0x987 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_dma.o
  .debug_abbrev  0x0000000000000000      0x216 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_dma.o
@@ -879,6 +881,10 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_gpio.o
  .text.HAL_GPIO_DeInit
                 0x0000000000000000      0x1c8 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_gpio.o
+ .text.HAL_GPIO_ReadPin
+                0x0000000000000000       0x30 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_gpio.o
+ .text.HAL_GPIO_TogglePin
+                0x0000000000000000       0x36 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_gpio.o
  .text.HAL_GPIO_LockPin
                 0x0000000000000000       0x50 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_gpio.o
  .text.HAL_GPIO_EXTI_IRQHandler
@@ -1516,15 +1522,105 @@ Discarded input sections
  .text          0x0000000000000000        0x0 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
  .data          0x0000000000000000        0x0 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
  .bss           0x0000000000000000        0x0 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
- .debug_info    0x0000000000000000      0x111 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
- .debug_abbrev  0x0000000000000000       0x7b /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
- .debug_aranges
+ .text.HAL_USART_Init
+                0x0000000000000000       0x82 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_DeInit
+                0x0000000000000000       0x50 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_MspInit
+                0x0000000000000000       0x14 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_MspDeInit
+                0x0000000000000000       0x14 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_Transmit
+                0x0000000000000000      0x132 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_Receive
+                0x0000000000000000      0x194 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_TransmitReceive
+                0x0000000000000000      0x1d8 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_Transmit_IT
+                0x0000000000000000       0x8a /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_Receive_IT
+                0x0000000000000000       0xa4 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_TransmitReceive_IT
+                0x0000000000000000       0xd2 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_Transmit_DMA
+                0x0000000000000000       0xd8 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_Receive_DMA
+                0x0000000000000000      0x154 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_TransmitReceive_DMA
+                0x0000000000000000      0x168 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_DMAPause
+                0x0000000000000000       0x44 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_DMAResume
+                0x0000000000000000       0x44 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_DMAStop
+                0x0000000000000000       0xb6 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_Abort
+                0x0000000000000000       0xbc /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_Abort_IT
+                0x0000000000000000      0x140 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_IRQHandler
+                0x0000000000000000      0x234 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_TxCpltCallback
+                0x0000000000000000       0x14 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_TxHalfCpltCallback
+                0x0000000000000000       0x14 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_RxCpltCallback
+                0x0000000000000000       0x14 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_RxHalfCpltCallback
+                0x0000000000000000       0x14 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_TxRxCpltCallback
+                0x0000000000000000       0x14 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_ErrorCallback
+                0x0000000000000000       0x14 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_AbortCpltCallback
+                0x0000000000000000       0x14 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_GetState
+                0x0000000000000000       0x1c /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.HAL_USART_GetError
                 0x0000000000000000       0x18 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
- .debug_line    0x0000000000000000      0x164 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
- .debug_str     0x0000000000000000      0x271 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.USART_DMATransmitCplt
+                0x0000000000000000       0x6a /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.USART_DMATxHalfCplt
+                0x0000000000000000       0x1c /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.USART_DMAReceiveCplt
+                0x0000000000000000       0xa8 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.USART_DMARxHalfCplt
+                0x0000000000000000       0x1c /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.USART_DMAError
+                0x0000000000000000       0x9c /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.USART_WaitOnFlagUntilTimeout
+                0x0000000000000000       0xac /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.USART_EndTxTransfer
+                0x0000000000000000       0x2c /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.USART_EndRxTransfer
+                0x0000000000000000       0x3c /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.USART_DMAAbortOnError
+                0x0000000000000000       0x28 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.USART_DMATxAbortCallback
+                0x0000000000000000       0x52 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.USART_DMARxAbortCallback
+                0x0000000000000000       0x52 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.USART_Transmit_IT
+                0x0000000000000000       0xac /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.USART_EndTransmit_IT
+                0x0000000000000000       0x40 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.USART_Receive_IT
+                0x0000000000000000      0x134 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.USART_TransmitReceive_IT
+                0x0000000000000000      0x1b2 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .text.USART_SetConfig
+                0x0000000000000000      0x278 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .debug_info    0x0000000000000000     0x112d /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .debug_abbrev  0x0000000000000000      0x27e /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .debug_aranges
+                0x0000000000000000      0x178 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .debug_ranges  0x0000000000000000      0x168 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .debug_line    0x0000000000000000     0x1402 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .debug_str     0x0000000000000000      0xb11 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
  .comment       0x0000000000000000       0x1e /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+ .debug_frame   0x0000000000000000      0x6a4 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
  .ARM.attributes
-                0x0000000000000000       0x39 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
+                0x0000000000000000       0x34 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_usart.o
  .text          0x0000000000000000        0x0 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_wwdg.o
  .data          0x0000000000000000        0x0 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_wwdg.o
  .bss           0x0000000000000000        0x0 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_wwdg.o
@@ -1842,7 +1938,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/thumb/v7e-m+
                 0x0000000008000000                g_pfnVectors
                 0x0000000008000198                . = ALIGN (0x4)
 
-.text           0x00000000080001c0     0x2fd0
+.text           0x00000000080001c0     0x2f7c
                 0x00000000080001c0                . = ALIGN (0x4)
  *(.text)
  .text          0x00000000080001c0       0xdc /usr/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(lib_a-strlen.o)
@@ -1897,346 +1993,339 @@ LOAD /usr/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/thumb/v7e-m+
  .text.SystemInit
                 0x0000000008000504       0x6c /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/system_stm32f4xx.o
                 0x0000000008000504                SystemInit
- .text.main     0x0000000008000570       0x54 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
+ .text.main     0x0000000008000570       0x38 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
                 0x0000000008000570                main
- .text.LED_BLINK_Task
-                0x00000000080005c4       0x20 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
-                0x00000000080005c4                LED_BLINK_Task
  .text.SystemClock_Config
-                0x00000000080005e4       0xd4 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
-                0x00000000080005e4                SystemClock_Config
+                0x00000000080005a8       0xd4 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
+                0x00000000080005a8                SystemClock_Config
  .text.MX_USART1_UART_Init
-                0x00000000080006b8       0x54 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
+                0x000000000800067c       0x54 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
  .text.UART_TransmitText_Task
-                0x000000000800070c       0x54 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
-                0x000000000800070c                UART_TransmitText_Task
+                0x00000000080006d0       0x44 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
+                0x00000000080006d0                UART_TransmitText_Task
  .text.MX_GPIO_Init
-                0x0000000008000760      0x100 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
+                0x0000000008000714      0x150 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
  .text.Error_Handler
-                0x0000000008000860        0xe /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
-                0x0000000008000860                Error_Handler
- *fill*         0x000000000800086e        0x2 
+                0x0000000008000864        0xe /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
+                0x0000000008000864                Error_Handler
+ *fill*         0x0000000008000872        0x2 
  .text.pxPortInitialiseStack
-                0x0000000008000870       0x68 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
-                0x0000000008000870                pxPortInitialiseStack
+                0x0000000008000874       0x68 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
+                0x0000000008000874                pxPortInitialiseStack
  .text.prvTaskExitError
-                0x00000000080008d8       0x58 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
+                0x00000000080008dc       0x58 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
+ *fill*         0x0000000008000934        0xc 
  .text.SVC_Handler
-                0x0000000008000930       0x28 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
-                0x0000000008000930                SVC_Handler
+                0x0000000008000940       0x28 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
+                0x0000000008000940                SVC_Handler
  .text.prvPortStartFirstTask
-                0x0000000008000958       0x28 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
+                0x0000000008000968       0x28 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
  .text.xPortStartScheduler
-                0x0000000008000980      0x144 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
-                0x0000000008000980                xPortStartScheduler
+                0x0000000008000990      0x144 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
+                0x0000000008000990                xPortStartScheduler
  .text.vPortEnterCritical
-                0x0000000008000ac4       0x60 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
-                0x0000000008000ac4                vPortEnterCritical
+                0x0000000008000ad4       0x60 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
+                0x0000000008000ad4                vPortEnterCritical
  .text.vPortExitCritical
-                0x0000000008000b24       0x54 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
-                0x0000000008000b24                vPortExitCritical
- *fill*         0x0000000008000b78        0x8 
+                0x0000000008000b34       0x54 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
+                0x0000000008000b34                vPortExitCritical
+ *fill*         0x0000000008000b88        0x8 
  .text.PendSV_Handler
-                0x0000000008000b80       0x68 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
-                0x0000000008000b80                PendSV_Handler
+                0x0000000008000b90       0x68 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
+                0x0000000008000b90                PendSV_Handler
  .text.xPortSysTickHandler
-                0x0000000008000be8       0x44 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
-                0x0000000008000be8                xPortSysTickHandler
+                0x0000000008000bf8       0x44 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
+                0x0000000008000bf8                xPortSysTickHandler
  .text.vPortSetupTimerInterrupt
-                0x0000000008000c2c       0x48 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
-                0x0000000008000c2c                vPortSetupTimerInterrupt
+                0x0000000008000c3c       0x48 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
+                0x0000000008000c3c                vPortSetupTimerInterrupt
  .text.vPortEnableVFP
-                0x0000000008000c74       0x14 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
+                0x0000000008000c84       0x14 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
  .text.vListInitialise
-                0x0000000008000c88       0x40 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/list.o
-                0x0000000008000c88                vListInitialise
+                0x0000000008000c98       0x40 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/list.o
+                0x0000000008000c98                vListInitialise
  .text.vListInitialiseItem
-                0x0000000008000cc8       0x1a /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/list.o
-                0x0000000008000cc8                vListInitialiseItem
+                0x0000000008000cd8       0x1a /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/list.o
+                0x0000000008000cd8                vListInitialiseItem
  .text.vListInsertEnd
-                0x0000000008000ce2       0x48 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/list.o
-                0x0000000008000ce2                vListInsertEnd
+                0x0000000008000cf2       0x48 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/list.o
+                0x0000000008000cf2                vListInsertEnd
  .text.vListInsert
-                0x0000000008000d2a       0x72 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/list.o
-                0x0000000008000d2a                vListInsert
+                0x0000000008000d3a       0x72 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/list.o
+                0x0000000008000d3a                vListInsert
  .text.uxListRemove
-                0x0000000008000d9c       0x54 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/list.o
-                0x0000000008000d9c                uxListRemove
+                0x0000000008000dac       0x54 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/list.o
+                0x0000000008000dac                uxListRemove
  .text.xTaskCreate
-                0x0000000008000df0       0x82 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
-                0x0000000008000df0                xTaskCreate
+                0x0000000008000e00       0x82 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
+                0x0000000008000e00                xTaskCreate
  .text.prvInitialiseNewTask
-                0x0000000008000e72      0x10e /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
+                0x0000000008000e82      0x10e /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
  .text.prvAddNewTaskToReadyList
-                0x0000000008000f80       0xd4 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
+                0x0000000008000f90       0xd4 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
  .text.vTaskDelay
-                0x0000000008001054       0x68 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
-                0x0000000008001054                vTaskDelay
+                0x0000000008001064       0x68 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
+                0x0000000008001064                vTaskDelay
  .text.vTaskStartScheduler
-                0x00000000080010bc       0x90 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
-                0x00000000080010bc                vTaskStartScheduler
+                0x00000000080010cc       0x90 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
+                0x00000000080010cc                vTaskStartScheduler
  .text.vTaskSuspendAll
-                0x000000000800114c       0x1c /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
-                0x000000000800114c                vTaskSuspendAll
+                0x000000000800115c       0x1c /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
+                0x000000000800115c                vTaskSuspendAll
  .text.xTaskResumeAll
-                0x0000000008001168      0x138 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
-                0x0000000008001168                xTaskResumeAll
+                0x0000000008001178      0x138 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
+                0x0000000008001178                xTaskResumeAll
  .text.xTaskIncrementTick
-                0x00000000080012a0      0x170 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
-                0x00000000080012a0                xTaskIncrementTick
+                0x00000000080012b0      0x170 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
+                0x00000000080012b0                xTaskIncrementTick
  .text.vTaskSwitchContext
-                0x0000000008001410       0xb8 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
-                0x0000000008001410                vTaskSwitchContext
+                0x0000000008001420       0xb8 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
+                0x0000000008001420                vTaskSwitchContext
  .text.prvIdleTask
-                0x00000000080014c8       0x30 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
+                0x00000000080014d8       0x30 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
  .text.prvInitialiseTaskLists
-                0x00000000080014f8       0x80 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
+                0x0000000008001508       0x80 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
  .text.prvCheckTasksWaitingTermination
-                0x0000000008001578       0x5c /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
+                0x0000000008001588       0x5c /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
  .text.prvDeleteTCB
-                0x00000000080015d4       0x20 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
+                0x00000000080015e4       0x20 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
  .text.prvResetNextTaskUnblockTime
-                0x00000000080015f4       0x40 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
+                0x0000000008001604       0x40 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
  .text.xTaskGetSchedulerState
-                0x0000000008001634       0x3c /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
-                0x0000000008001634                xTaskGetSchedulerState
+                0x0000000008001644       0x3c /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
+                0x0000000008001644                xTaskGetSchedulerState
  .text.prvAddCurrentTaskToDelayedList
-                0x0000000008001670       0xcc /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
+                0x0000000008001680       0xcc /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
  .text.pvPortMalloc
-                0x000000000800173c      0x11c /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/heap_2.o
-                0x000000000800173c                pvPortMalloc
+                0x000000000800174c      0x11c /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/heap_2.o
+                0x000000000800174c                pvPortMalloc
  .text.vPortFree
-                0x0000000008001858       0x74 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/heap_2.o
-                0x0000000008001858                vPortFree
+                0x0000000008001868       0x74 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/heap_2.o
+                0x0000000008001868                vPortFree
  .text.prvHeapInit
-                0x00000000080018cc       0x54 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/heap_2.o
+                0x00000000080018dc       0x54 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/heap_2.o
  .text.HAL_Init
-                0x0000000008001920       0x44 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal.o
-                0x0000000008001920                HAL_Init
+                0x0000000008001930       0x44 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal.o
+                0x0000000008001930                HAL_Init
  .text.HAL_MspInit
-                0x0000000008001964        0xe /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal.o
-                0x0000000008001964                HAL_MspInit
- *fill*         0x0000000008001972        0x2 
+                0x0000000008001974        0xe /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal.o
+                0x0000000008001974                HAL_MspInit
+ *fill*         0x0000000008001982        0x2 
  .text.HAL_InitTick
-                0x0000000008001974       0x60 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal.o
-                0x0000000008001974                HAL_InitTick
+                0x0000000008001984       0x60 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal.o
+                0x0000000008001984                HAL_InitTick
  .text.HAL_IncTick
-                0x00000000080019d4       0x28 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal.o
-                0x00000000080019d4                HAL_IncTick
+                0x00000000080019e4       0x28 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal.o
+                0x00000000080019e4                HAL_IncTick
  .text.HAL_GetTick
-                0x00000000080019fc       0x18 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal.o
-                0x00000000080019fc                HAL_GetTick
+                0x0000000008001a0c       0x18 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal.o
+                0x0000000008001a0c                HAL_GetTick
  .text.NVIC_SetPriorityGrouping
-                0x0000000008001a14       0x48 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_cortex.o
+                0x0000000008001a24       0x48 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_cortex.o
  .text.NVIC_GetPriorityGrouping
-                0x0000000008001a5c       0x1c /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_cortex.o
+                0x0000000008001a6c       0x1c /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_cortex.o
  .text.NVIC_SetPriority
-                0x0000000008001a78       0x54 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_cortex.o
+                0x0000000008001a88       0x54 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_cortex.o
  .text.NVIC_EncodePriority
-                0x0000000008001acc       0x66 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_cortex.o
- *fill*         0x0000000008001b32        0x2 
+                0x0000000008001adc       0x66 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_cortex.o
+ *fill*         0x0000000008001b42        0x2 
  .text.SysTick_Config
-                0x0000000008001b34       0x44 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_cortex.o
+                0x0000000008001b44       0x44 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_cortex.o
  .text.HAL_NVIC_SetPriorityGrouping
-                0x0000000008001b78       0x16 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_cortex.o
-                0x0000000008001b78                HAL_NVIC_SetPriorityGrouping
+                0x0000000008001b88       0x16 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_cortex.o
+                0x0000000008001b88                HAL_NVIC_SetPriorityGrouping
  .text.HAL_NVIC_SetPriority
-                0x0000000008001b8e       0x38 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_cortex.o
-                0x0000000008001b8e                HAL_NVIC_SetPriority
+                0x0000000008001b9e       0x38 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_cortex.o
+                0x0000000008001b9e                HAL_NVIC_SetPriority
  .text.HAL_SYSTICK_Config
-                0x0000000008001bc6       0x18 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_cortex.o
-                0x0000000008001bc6                HAL_SYSTICK_Config
- *fill*         0x0000000008001bde        0x2 
+                0x0000000008001bd6       0x18 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_cortex.o
+                0x0000000008001bd6                HAL_SYSTICK_Config
+ *fill*         0x0000000008001bee        0x2 
  .text.HAL_GPIO_Init
-                0x0000000008001be0      0x308 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_gpio.o
-                0x0000000008001be0                HAL_GPIO_Init
- .text.HAL_GPIO_ReadPin
-                0x0000000008001ee8       0x30 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_gpio.o
-                0x0000000008001ee8                HAL_GPIO_ReadPin
+                0x0000000008001bf0      0x308 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_gpio.o
+                0x0000000008001bf0                HAL_GPIO_Init
  .text.HAL_GPIO_WritePin
-                0x0000000008001f18       0x32 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_gpio.o
-                0x0000000008001f18                HAL_GPIO_WritePin
- .text.HAL_GPIO_TogglePin
-                0x0000000008001f4a       0x36 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_gpio.o
-                0x0000000008001f4a                HAL_GPIO_TogglePin
+                0x0000000008001ef8       0x32 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_gpio.o
+                0x0000000008001ef8                HAL_GPIO_WritePin
+ *fill*         0x0000000008001f2a        0x2 
  .text.HAL_RCC_OscConfig
-                0x0000000008001f80      0x484 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_rcc.o
-                0x0000000008001f80                HAL_RCC_OscConfig
+                0x0000000008001f2c      0x484 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_rcc.o
+                0x0000000008001f2c                HAL_RCC_OscConfig
  .text.HAL_RCC_ClockConfig
-                0x0000000008002404      0x1c4 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_rcc.o
-                0x0000000008002404                HAL_RCC_ClockConfig
+                0x00000000080023b0      0x1c4 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_rcc.o
+                0x00000000080023b0                HAL_RCC_ClockConfig
  .text.HAL_RCC_GetSysClockFreq
-                0x00000000080025c8      0x1c4 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_rcc.o
-                0x00000000080025c8                HAL_RCC_GetSysClockFreq
+                0x0000000008002574      0x1c4 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_rcc.o
+                0x0000000008002574                HAL_RCC_GetSysClockFreq
  .text.HAL_RCC_GetHCLKFreq
-                0x000000000800278c       0x18 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_rcc.o
-                0x000000000800278c                HAL_RCC_GetHCLKFreq
+                0x0000000008002738       0x18 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_rcc.o
+                0x0000000008002738                HAL_RCC_GetHCLKFreq
  .text.HAL_RCC_GetPCLK1Freq
-                0x00000000080027a4       0x28 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_rcc.o
-                0x00000000080027a4                HAL_RCC_GetPCLK1Freq
+                0x0000000008002750       0x28 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_rcc.o
+                0x0000000008002750                HAL_RCC_GetPCLK1Freq
  .text.HAL_RCC_GetPCLK2Freq
-                0x00000000080027cc       0x28 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_rcc.o
-                0x00000000080027cc                HAL_RCC_GetPCLK2Freq
+                0x0000000008002778       0x28 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_rcc.o
+                0x0000000008002778                HAL_RCC_GetPCLK2Freq
  .text.HAL_UART_Init
-                0x00000000080027f4       0x9a /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_uart.o
-                0x00000000080027f4                HAL_UART_Init
+                0x00000000080027a0       0x9a /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_uart.o
+                0x00000000080027a0                HAL_UART_Init
  .text.HAL_UART_MspInit
-                0x000000000800288e       0x14 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_uart.o
-                0x000000000800288e                HAL_UART_MspInit
+                0x000000000800283a       0x14 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_uart.o
+                0x000000000800283a                HAL_UART_MspInit
  .text.HAL_UART_Transmit
-                0x00000000080028a2      0x132 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_uart.o
-                0x00000000080028a2                HAL_UART_Transmit
+                0x000000000800284e      0x132 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_uart.o
+                0x000000000800284e                HAL_UART_Transmit
  .text.UART_WaitOnFlagUntilTimeout
-                0x00000000080029d4       0x94 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_uart.o
+                0x0000000008002980       0x94 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_uart.o
  .text.UART_SetConfig
-                0x0000000008002a68      0x414 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_uart.o
+                0x0000000008002a14      0x414 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_uart.o
  .text.Reset_Handler
-                0x0000000008002e7c       0x50 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/startup_stm32f411xe.o
-                0x0000000008002e7c                Reset_Handler
+                0x0000000008002e28       0x50 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/startup_stm32f411xe.o
+                0x0000000008002e28                Reset_Handler
  .text.Default_Handler
-                0x0000000008002ecc        0x2 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/startup_stm32f411xe.o
-                0x0000000008002ecc                RTC_Alarm_IRQHandler
-                0x0000000008002ecc                EXTI2_IRQHandler
-                0x0000000008002ecc                SPI4_IRQHandler
-                0x0000000008002ecc                TIM1_CC_IRQHandler
-                0x0000000008002ecc                DMA2_Stream5_IRQHandler
-                0x0000000008002ecc                DMA1_Stream5_IRQHandler
-                0x0000000008002ecc                PVD_IRQHandler
-                0x0000000008002ecc                SDIO_IRQHandler
-                0x0000000008002ecc                TAMP_STAMP_IRQHandler
-                0x0000000008002ecc                EXTI3_IRQHandler
-                0x0000000008002ecc                TIM1_UP_TIM10_IRQHandler
-                0x0000000008002ecc                I2C3_ER_IRQHandler
-                0x0000000008002ecc                EXTI0_IRQHandler
-                0x0000000008002ecc                I2C2_EV_IRQHandler
-                0x0000000008002ecc                DMA1_Stream2_IRQHandler
-                0x0000000008002ecc                FPU_IRQHandler
-                0x0000000008002ecc                DMA2_Stream2_IRQHandler
-                0x0000000008002ecc                SPI1_IRQHandler
-                0x0000000008002ecc                TIM1_BRK_TIM9_IRQHandler
-                0x0000000008002ecc                DMA2_Stream3_IRQHandler
-                0x0000000008002ecc                USART6_IRQHandler
-                0x0000000008002ecc                DMA2_Stream0_IRQHandler
-                0x0000000008002ecc                TIM4_IRQHandler
-                0x0000000008002ecc                I2C1_EV_IRQHandler
-                0x0000000008002ecc                DMA1_Stream6_IRQHandler
-                0x0000000008002ecc                DMA1_Stream1_IRQHandler
-                0x0000000008002ecc                TIM3_IRQHandler
-                0x0000000008002ecc                RCC_IRQHandler
-                0x0000000008002ecc                Default_Handler
-                0x0000000008002ecc                EXTI15_10_IRQHandler
-                0x0000000008002ecc                ADC_IRQHandler
-                0x0000000008002ecc                DMA1_Stream7_IRQHandler
-                0x0000000008002ecc                SPI5_IRQHandler
-                0x0000000008002ecc                TIM5_IRQHandler
-                0x0000000008002ecc                DMA2_Stream7_IRQHandler
-                0x0000000008002ecc                I2C3_EV_IRQHandler
-                0x0000000008002ecc                EXTI9_5_IRQHandler
-                0x0000000008002ecc                RTC_WKUP_IRQHandler
-                0x0000000008002ecc                SPI2_IRQHandler
-                0x0000000008002ecc                DMA1_Stream0_IRQHandler
-                0x0000000008002ecc                EXTI4_IRQHandler
-                0x0000000008002ecc                WWDG_IRQHandler
-                0x0000000008002ecc                TIM2_IRQHandler
-                0x0000000008002ecc                OTG_FS_WKUP_IRQHandler
-                0x0000000008002ecc                TIM1_TRG_COM_TIM11_IRQHandler
-                0x0000000008002ecc                EXTI1_IRQHandler
-                0x0000000008002ecc                USART2_IRQHandler
-                0x0000000008002ecc                I2C2_ER_IRQHandler
-                0x0000000008002ecc                DMA2_Stream1_IRQHandler
-                0x0000000008002ecc                FLASH_IRQHandler
-                0x0000000008002ecc                DMA2_Stream4_IRQHandler
-                0x0000000008002ecc                USART1_IRQHandler
-                0x0000000008002ecc                OTG_FS_IRQHandler
-                0x0000000008002ecc                SPI3_IRQHandler
-                0x0000000008002ecc                DMA1_Stream4_IRQHandler
-                0x0000000008002ecc                I2C1_ER_IRQHandler
-                0x0000000008002ecc                DMA2_Stream6_IRQHandler
-                0x0000000008002ecc                DMA1_Stream3_IRQHandler
+                0x0000000008002e78        0x2 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/startup_stm32f411xe.o
+                0x0000000008002e78                RTC_Alarm_IRQHandler
+                0x0000000008002e78                EXTI2_IRQHandler
+                0x0000000008002e78                SPI4_IRQHandler
+                0x0000000008002e78                TIM1_CC_IRQHandler
+                0x0000000008002e78                DMA2_Stream5_IRQHandler
+                0x0000000008002e78                DMA1_Stream5_IRQHandler
+                0x0000000008002e78                PVD_IRQHandler
+                0x0000000008002e78                SDIO_IRQHandler
+                0x0000000008002e78                TAMP_STAMP_IRQHandler
+                0x0000000008002e78                EXTI3_IRQHandler
+                0x0000000008002e78                TIM1_UP_TIM10_IRQHandler
+                0x0000000008002e78                I2C3_ER_IRQHandler
+                0x0000000008002e78                EXTI0_IRQHandler
+                0x0000000008002e78                I2C2_EV_IRQHandler
+                0x0000000008002e78                DMA1_Stream2_IRQHandler
+                0x0000000008002e78                FPU_IRQHandler
+                0x0000000008002e78                DMA2_Stream2_IRQHandler
+                0x0000000008002e78                SPI1_IRQHandler
+                0x0000000008002e78                TIM1_BRK_TIM9_IRQHandler
+                0x0000000008002e78                DMA2_Stream3_IRQHandler
+                0x0000000008002e78                USART6_IRQHandler
+                0x0000000008002e78                DMA2_Stream0_IRQHandler
+                0x0000000008002e78                TIM4_IRQHandler
+                0x0000000008002e78                I2C1_EV_IRQHandler
+                0x0000000008002e78                DMA1_Stream6_IRQHandler
+                0x0000000008002e78                DMA1_Stream1_IRQHandler
+                0x0000000008002e78                TIM3_IRQHandler
+                0x0000000008002e78                RCC_IRQHandler
+                0x0000000008002e78                Default_Handler
+                0x0000000008002e78                EXTI15_10_IRQHandler
+                0x0000000008002e78                ADC_IRQHandler
+                0x0000000008002e78                DMA1_Stream7_IRQHandler
+                0x0000000008002e78                SPI5_IRQHandler
+                0x0000000008002e78                TIM5_IRQHandler
+                0x0000000008002e78                DMA2_Stream7_IRQHandler
+                0x0000000008002e78                I2C3_EV_IRQHandler
+                0x0000000008002e78                EXTI9_5_IRQHandler
+                0x0000000008002e78                RTC_WKUP_IRQHandler
+                0x0000000008002e78                SPI2_IRQHandler
+                0x0000000008002e78                DMA1_Stream0_IRQHandler
+                0x0000000008002e78                EXTI4_IRQHandler
+                0x0000000008002e78                WWDG_IRQHandler
+                0x0000000008002e78                TIM2_IRQHandler
+                0x0000000008002e78                OTG_FS_WKUP_IRQHandler
+                0x0000000008002e78                TIM1_TRG_COM_TIM11_IRQHandler
+                0x0000000008002e78                EXTI1_IRQHandler
+                0x0000000008002e78                USART2_IRQHandler
+                0x0000000008002e78                I2C2_ER_IRQHandler
+                0x0000000008002e78                DMA2_Stream1_IRQHandler
+                0x0000000008002e78                FLASH_IRQHandler
+                0x0000000008002e78                DMA2_Stream4_IRQHandler
+                0x0000000008002e78                USART1_IRQHandler
+                0x0000000008002e78                OTG_FS_IRQHandler
+                0x0000000008002e78                SPI3_IRQHandler
+                0x0000000008002e78                DMA1_Stream4_IRQHandler
+                0x0000000008002e78                I2C1_ER_IRQHandler
+                0x0000000008002e78                DMA2_Stream6_IRQHandler
+                0x0000000008002e78                DMA1_Stream3_IRQHandler
  .text.__udivmoddi4
-                0x0000000008002ece      0x2aa /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/libgcc.a(_udivmoddi4.o)
-                0x0000000008002ece                __udivmoddi4
+                0x0000000008002e7a      0x2aa /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/libgcc.a(_udivmoddi4.o)
+                0x0000000008002e7a                __udivmoddi4
  *(.glue_7)
- .glue_7        0x0000000008003178        0x0 linker stubs
+ .glue_7        0x0000000008003124        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x0000000008003178        0x0 linker stubs
+ .glue_7t       0x0000000008003124        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x0000000008003178        0x0 /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/crtbegin.o
+ .eh_frame      0x0000000008003124        0x0 /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/crtbegin.o
  *(.init)
- .init          0x0000000008003178        0x4 /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/crti.o
-                0x0000000008003178                _init
- .init          0x000000000800317c        0x8 /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/crtn.o
+ .init          0x0000000008003124        0x4 /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/crti.o
+                0x0000000008003124                _init
+ .init          0x0000000008003128        0x8 /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/crtn.o
  *(.fini)
- .fini          0x0000000008003184        0x4 /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/crti.o
-                0x0000000008003184                _fini
- .fini          0x0000000008003188        0x8 /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/crtn.o
-                0x0000000008003190                . = ALIGN (0x4)
-                0x0000000008003190                _etext = .
+ .fini          0x0000000008003130        0x4 /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/crti.o
+                0x0000000008003130                _fini
+ .fini          0x0000000008003134        0x8 /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/crtn.o
+                0x000000000800313c                . = ALIGN (0x4)
+                0x000000000800313c                _etext = .
 
-.vfp11_veneer   0x0000000008003190        0x0
- .vfp11_veneer  0x0000000008003190        0x0 linker stubs
+.vfp11_veneer   0x000000000800313c        0x0
+ .vfp11_veneer  0x000000000800313c        0x0 linker stubs
 
-.v4_bx          0x0000000008003190        0x0
- .v4_bx         0x0000000008003190        0x0 linker stubs
+.v4_bx          0x000000000800313c        0x0
+ .v4_bx         0x000000000800313c        0x0 linker stubs
 
-.iplt           0x0000000008003190        0x0
- .iplt          0x0000000008003190        0x0 /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/crtbegin.o
+.iplt           0x000000000800313c        0x0
+ .iplt          0x000000000800313c        0x0 /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/crtbegin.o
 
-.rodata         0x0000000008003190       0x40
-                0x0000000008003190                . = ALIGN (0x4)
+.rodata         0x000000000800313c       0x38
+                0x000000000800313c                . = ALIGN (0x4)
  *(.rodata)
- .rodata        0x0000000008003190       0x1a /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
- *fill*         0x00000000080031aa        0x2 
- .rodata        0x00000000080031ac        0x5 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
+ .rodata        0x000000000800313c       0x12 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
+ *fill*         0x000000000800314e        0x2 
+ .rodata        0x0000000008003150        0x5 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
  *(.rodata*)
- *fill*         0x00000000080031b1        0x3 
+ *fill*         0x0000000008003155        0x3 
  .rodata._global_impure_ptr
-                0x00000000080031b4        0x4 /usr/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(lib_a-impure.o)
-                0x00000000080031b4                _global_impure_ptr
+                0x0000000008003158        0x4 /usr/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(lib_a-impure.o)
+                0x0000000008003158                _global_impure_ptr
  .rodata.AHBPrescTable
-                0x00000000080031b8       0x10 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/system_stm32f4xx.o
-                0x00000000080031b8                AHBPrescTable
+                0x000000000800315c       0x10 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/system_stm32f4xx.o
+                0x000000000800315c                AHBPrescTable
  .rodata.APBPrescTable
-                0x00000000080031c8        0x8 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/system_stm32f4xx.o
-                0x00000000080031c8                APBPrescTable
-                0x00000000080031d0                . = ALIGN (0x4)
+                0x000000000800316c        0x8 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/system_stm32f4xx.o
+                0x000000000800316c                APBPrescTable
+                0x0000000008003174                . = ALIGN (0x4)
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM            0x00000000080031d0        0x8
-                0x00000000080031d0                __exidx_start = .
+.ARM            0x0000000008003174        0x8
+                0x0000000008003174                __exidx_start = .
  *(.ARM.exidx*)
  .ARM.exidx.text.__udivmoddi4
-                0x00000000080031d0        0x8 /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/libgcc.a(_udivmoddi4.o)
-                0x00000000080031d8                __exidx_end = .
+                0x0000000008003174        0x8 /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/libgcc.a(_udivmoddi4.o)
+                0x000000000800317c                __exidx_end = .
 
-.rel.dyn        0x00000000080031d8        0x0
- .rel.iplt      0x00000000080031d8        0x0 /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/crtbegin.o
+.rel.dyn        0x000000000800317c        0x0
+ .rel.iplt      0x000000000800317c        0x0 /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/crtbegin.o
 
-.preinit_array  0x00000000080031d8        0x0
-                0x00000000080031d8                PROVIDE (__preinit_array_start = .)
+.preinit_array  0x000000000800317c        0x0
+                0x000000000800317c                PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x00000000080031d8                PROVIDE (__preinit_array_end = .)
+                0x000000000800317c                PROVIDE (__preinit_array_end = .)
 
-.init_array     0x00000000080031d8        0x8
-                0x00000000080031d8                PROVIDE (__init_array_start = .)
+.init_array     0x000000000800317c        0x8
+                0x000000000800317c                PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  .init_array.00000
-                0x00000000080031d8        0x4 /usr/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(lib_a-__call_atexit.o)
+                0x000000000800317c        0x4 /usr/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(lib_a-__call_atexit.o)
  *(.init_array*)
- .init_array    0x00000000080031dc        0x4 /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/crtbegin.o
-                0x00000000080031e0                PROVIDE (__init_array_end = .)
+ .init_array    0x0000000008003180        0x4 /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/crtbegin.o
+                0x0000000008003184                PROVIDE (__init_array_end = .)
 
-.fini_array     0x00000000080031e0        0x4
-                0x00000000080031e0                PROVIDE (__fini_array_start = .)
+.fini_array     0x0000000008003184        0x4
+                0x0000000008003184                PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x00000000080031e0        0x4 /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/crtbegin.o
-                0x00000000080031e4                PROVIDE (__fini_array_end = .)
-                0x00000000080031e4                _sidata = LOADADDR (.data)
+ .fini_array    0x0000000008003184        0x4 /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/crtbegin.o
+                0x0000000008003188                PROVIDE (__fini_array_end = .)
+                0x0000000008003188                _sidata = LOADADDR (.data)
 
-.data           0x0000000020000000      0x43c load address 0x00000000080031e4
+.data           0x0000000020000000      0x43c load address 0x0000000008003188
                 0x0000000020000000                . = ALIGN (0x4)
                 0x0000000020000000                _sdata = .
  *(.data)
@@ -2260,11 +2349,11 @@ LOAD /usr/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/thumb/v7e-m+
  *fill*         0x0000000020000439        0x3 
                 0x000000002000043c                _edata = .
 
-.igot.plt       0x000000002000043c        0x0 load address 0x0000000008003620
+.igot.plt       0x000000002000043c        0x0 load address 0x00000000080035c4
  .igot.plt      0x000000002000043c        0x0 /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/crtbegin.o
                 0x000000002000043c                . = ALIGN (0x4)
 
-.bss            0x000000002000043c     0x3da8 load address 0x0000000008003620
+.bss            0x000000002000043c     0x3da8 load address 0x00000000080035c4
                 0x000000002000043c                _sbss = .
                 0x000000002000043c                __bss_start__ = _sbss
  *(.bss)
@@ -2337,7 +2426,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/9.1.0/../../../../arm-none-eabi/lib/thumb/v7e-m+
                 0x00000000200041e4                __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x00000000200041e4      0x604 load address 0x0000000008003620
+                0x00000000200041e4      0x604 load address 0x00000000080035c4
                 0x00000000200041e8                . = ALIGN (0x8)
  *fill*         0x00000000200041e4        0x4 
                 0x00000000200041e8                PROVIDE (end = .)
@@ -2505,19 +2594,19 @@ LOAD /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/crtend.o
 LOAD /usr/lib/gcc/arm-none-eabi/9.1.0/thumb/v7e-m+fp/hard/crtn.o
 OUTPUT(/home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/binary/FreeRTOS.elf elf32-littlearm)
 
-.debug_info     0x0000000000000000     0x94c4
+.debug_info     0x0000000000000000     0x94e1
  .debug_info    0x0000000000000000      0x1aa /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_it.o
  .debug_info    0x00000000000001aa      0x56e /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/system_stm32f4xx.o
- .debug_info    0x0000000000000718     0x14c1 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
- .debug_info    0x0000000000001bd9      0x4e6 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
- .debug_info    0x00000000000020bf      0xb6c /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/list.o
- .debug_info    0x0000000000002c2b     0x2204 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
- .debug_info    0x0000000000004e2f      0xb95 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/heap_2.o
- .debug_info    0x00000000000059c4      0x915 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal.o
- .debug_info    0x00000000000062d9      0xdde /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_cortex.o
- .debug_info    0x00000000000070b7      0x7f7 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_gpio.o
- .debug_info    0x00000000000078ae      0x951 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_rcc.o
- .debug_info    0x00000000000081ff     0x12c5 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_uart.o
+ .debug_info    0x0000000000000718     0x14de /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
+ .debug_info    0x0000000000001bf6      0x4e6 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
+ .debug_info    0x00000000000020dc      0xb6c /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/list.o
+ .debug_info    0x0000000000002c48     0x2204 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
+ .debug_info    0x0000000000004e4c      0xb95 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/heap_2.o
+ .debug_info    0x00000000000059e1      0x915 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal.o
+ .debug_info    0x00000000000062f6      0xdde /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_cortex.o
+ .debug_info    0x00000000000070d4      0x7f7 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_gpio.o
+ .debug_info    0x00000000000078cb      0x951 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_rcc.o
+ .debug_info    0x000000000000821c     0x12c5 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_uart.o
 
 .debug_abbrev   0x0000000000000000     0x1b5b
  .debug_abbrev  0x0000000000000000       0xb3 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_it.o
@@ -2573,19 +2662,19 @@ OUTPUT(/home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/binary/Free
  .debug_ranges  0x0000000000000528       0x78 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_rcc.o
  .debug_ranges  0x00000000000005a0      0x1c0 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_uart.o
 
-.debug_line     0x0000000000000000     0x5928
+.debug_line     0x0000000000000000     0x5946
  .debug_line    0x0000000000000000      0x2c6 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_it.o
  .debug_line    0x00000000000002c6      0x298 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/system_stm32f4xx.o
- .debug_line    0x000000000000055e      0x419 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
- .debug_line    0x0000000000000977      0x4c4 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
- .debug_line    0x0000000000000e3b      0x326 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/list.o
- .debug_line    0x0000000000001161     0x1391 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
- .debug_line    0x00000000000024f2      0x367 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/heap_2.o
- .debug_line    0x0000000000002859      0x57c /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal.o
- .debug_line    0x0000000000002dd5      0x818 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_cortex.o
- .debug_line    0x00000000000035ed      0x6d4 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_gpio.o
- .debug_line    0x0000000000003cc1      0x8d6 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_rcc.o
- .debug_line    0x0000000000004597     0x1391 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_uart.o
+ .debug_line    0x000000000000055e      0x437 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/main.o
+ .debug_line    0x0000000000000995      0x4c4 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/port.o
+ .debug_line    0x0000000000000e59      0x326 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/list.o
+ .debug_line    0x000000000000117f     0x1391 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/tasks.o
+ .debug_line    0x0000000000002510      0x367 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/heap_2.o
+ .debug_line    0x0000000000002877      0x57c /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal.o
+ .debug_line    0x0000000000002df3      0x818 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_cortex.o
+ .debug_line    0x000000000000360b      0x6d4 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_gpio.o
+ .debug_line    0x0000000000003cdf      0x8d6 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_rcc.o
+ .debug_line    0x00000000000045b5     0x1391 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_hal_uart.o
 
 .debug_str      0x0000000000000000     0x32dc
  .debug_str     0x0000000000000000      0x272 /home/ibo/RD-Studies/rd_studies/STM32F411_FreeRTOS_Clockdrift/build/stm32f4xx_it.o
