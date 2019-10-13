@@ -97,10 +97,10 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-
+  MX_USART1_UART_Init();
   // Start scheduler
-  xTaskCreate(LED_BLINK_Task, "Task 1", configMINIMAL_STACK_SIZE, NULL, 1, NULL );
-  xTaskCreate(UART_TransmitText_Task, "Task 2", configMINIMAL_STACK_SIZE, NULL, 1, NULL );
+  xTaskCreate((void *)LED_BLINK_Task, "Task 1", configMINIMAL_STACK_SIZE, NULL, 1, NULL );
+  xTaskCreate((void *)UART_TransmitText_Task, "Task 2", configMINIMAL_STACK_SIZE, NULL, 1, NULL );
   vTaskStartScheduler();
 
   
