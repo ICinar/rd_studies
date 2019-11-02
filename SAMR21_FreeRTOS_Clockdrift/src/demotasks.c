@@ -43,7 +43,7 @@
 
 #include <asf.h>
 #include <conf_demo.h>
-#include <usart.h>
+
 #include "demotasks.h"
 
 /**
@@ -88,11 +88,52 @@ static void tick_task(void *params);
  * the objects for FreeRTOS to run the demo.
  */
 
+#define CONF_STDIO_USART_MODULE  EDBG_CDC_MODULE
+
+struct usart_module usart_instance;
+
+
+
+
+
+void uart_init(uint32_t baud)
+{
+	struct usart_config config_usart;
+	usart_get_config_defaults(&config_usart);
+	
+	config_usart.baudrate 	= baud;	 
+	config_usart.mux_setting = EDBG_CDC_SERCOM_MUX_SETTING;
+	config_usart.pinmux_pad0 = EDBG_CDC_SERCOM_PINMUX_PAD0;
+	config_usart.pinmux_pad1 = EDBG_CDC_SERCOM_PINMUX_PAD1;
+	config_usart.pinmux_pad2 = EDBG_CDC_SERCOM_PINMUX_PAD2;
+	config_usart.pinmux_pad3 = EDBG_CDC_SERCOM_PINMUX_PAD3;	
+
+
+	while (usart_init(&usart_instance, EDBG_CDC_MODULE, &config_usart) != STATUS_OK) {
+	}
+	 usart_serial_init(&usart_instance, CONF_STDIO_USART_MODULE, &config_usart);
+	 usart_enable(&usart_instance);	
+	
+}
+
+void serialRead(uint16_t *const buffer){
+	 
+	 if (usart_read_wait(&usart_instance, buffer) == STATUS_OK) {
+		 
+	 }
+ }
+
+void serialWrite(uint16_t *const buffer) {
+
+	 if (usart_write_wait(&usart_instance, buffer) == STATUS_OK) { 
+	 }
+}
 
 void demotasks_init(void)
 {
 	// Initialize hardware for the OLED1 Xplained Pro driver instance
 	oled1_init(&oled1);
+	uart_init(115200);
 	xTaskCreate(led_task_on,
 			(const char *) "LED-ON",
 			configMINIMAL_STACK_SIZE,
@@ -133,6 +174,7 @@ static void led_task_on(void *params)
 {
 
 	for(;;) {
+		serialWrite((uint16_t) "Test"); 
 		oled1_set_led_state(&oled1, OLED1_LED2_ID, true);
 
 		vTaskDelay(LED_TASK_ON_DELAY);
