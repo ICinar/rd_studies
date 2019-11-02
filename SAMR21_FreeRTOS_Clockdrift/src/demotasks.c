@@ -43,6 +43,7 @@
 
 #include <asf.h>
 #include <conf_demo.h>
+#include <stdio_serial.h>
 #include <string.h>
 #include "demotasks.h"
 
@@ -107,11 +108,7 @@ void uart_init(uint32_t baud)
 	config_usart.pinmux_pad1 = EDBG_CDC_SERCOM_PINMUX_PAD1;
 	config_usart.pinmux_pad2 = EDBG_CDC_SERCOM_PINMUX_PAD2;
 	config_usart.pinmux_pad3 = EDBG_CDC_SERCOM_PINMUX_PAD3;	
-
-
-	while (usart_init(&usart_instance, EDBG_CDC_MODULE, &config_usart) != STATUS_OK) {
-	}
-	 usart_serial_init(&usart_instance, CONF_STDIO_USART_MODULE, &config_usart);
+	 stdio_serial_init(&usart_instance, CONF_STDIO_USART_MODULE, &config_usart);
 	 usart_enable(&usart_instance);	
 	
 }
@@ -137,21 +134,21 @@ void demotasks_init(void)
 	oled1_init(&oled1);
 	uart_init(115200);
 	xTaskCreate(led_task_on,
-			(const char *) "LED-ON",
+			(const char *) "LED-ON\n",
 			configMINIMAL_STACK_SIZE,
 			NULL,
 			LED_TASK_ON_PRIORITY,
 			NULL);
 
 	xTaskCreate(led_task_off,
-			(const char *) "LED-OFF",
+			(const char *) "LED-OFF\n",
 			configMINIMAL_STACK_SIZE,
 			NULL,
 			LED_TASK_OFF_PRIORITY,
 			NULL);
 	
 	xTaskCreate(tick_task,
-			(const char *) "TICK",
+			(const char *) "TICK\n",
 			configMINIMAL_STACK_SIZE,
 			NULL,
 			TICK_TASK_PRIORITY,
@@ -176,7 +173,7 @@ static void led_task_on(void *params)
 {
 
 	for(;;) {
-		serialWrite("Tesst\t\n");
+		serialWrite(" ");
 		oled1_set_led_state(&oled1, OLED1_LED2_ID, true);
 
 		vTaskDelay(LED_TASK_ON_DELAY);
