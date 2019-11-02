@@ -59,17 +59,25 @@
 // From module: Delay routines
 #include <delay.h>
 
-// From module: FreeRTOS - kernel 8.0.1
+// From module: EXTINT - External Interrupt (Callback APIs)
+#include <extint.h>
+#include <extint_callback.h>
+
+// From module: FreeRTOS - kernel 10.0.0
 #include <FreeRTOS.h>
 #include <StackMacros.h>
 #include <croutine.h>
+#include <deprecated_definitions.h>
 #include <event_groups.h>
 #include <list.h>
+#include <message_buffer.h>
 #include <mpu_wrappers.h>
 #include <portable.h>
 #include <projdefs.h>
 #include <queue.h>
 #include <semphr.h>
+#include <stack_macros.h>
+#include <stream_buffer.h>
 #include <task.h>
 #include <timers.h>
 
@@ -90,6 +98,11 @@
 
 // From module: Part identification macros
 #include <parts.h>
+
+// From module: RTC - Real Time Counter in Count Mode (Callback APIs)
+#include <rtc_count.h>
+#include <rtc_count_interrupt.h>
+#include <rtc_tamper.h>
 
 // From module: SERCOM Callback API
 #include <sercom.h>
@@ -124,6 +137,21 @@
 
 // From module: SYSTEM - Reset Management for SAM D20/D21/R21/D09/D10/D11/DA/HA
 #include <reset.h>
+
+// From module: Sleep manager - SAMD implementation
+#include <samd/sleepmgr.h>
+#include <sleepmgr.h>
+
+// From module: TC - Timer Counter (Callback APIs)
+#include <tc.h>
+#include <tc_interrupt.h>
+
+// From module: TCC - Timer Counter for Control Applications (Callback APIs)
+#include <tcc.h>
+#include <tcc_callback.h>
+
+// From module: USART - Serial interface- SAM implementation for devices with only USART
+#include <serial.h>
 
 // From module: User I/O driver for FreeRTOS demo
 #include <cdc.h>

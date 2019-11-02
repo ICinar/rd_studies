@@ -43,6 +43,7 @@
 
 #include <asf.h>
 #include <conf_demo.h>
+#include <usart.h>
 #include "demotasks.h"
 
 /**
@@ -55,10 +56,10 @@
 //@{
 
 #define LED_TASK_ON_PRIORITY      (tskIDLE_PRIORITY + 1)
-#define LED_TASK_ON_DELAY         (1000 / portTICK_RATE_MS)
+#define LED_TASK_ON_DELAY         (2000 / portTICK_RATE_MS)
 #define LED_TASK_OFF_PRIORITY     (tskIDLE_PRIORITY + 2)
 #define TICK_TASK_PRIORITY		  (tskIDLE_PRIORITY + 3) 
-#define LED_TASK_OFF_DELAY        (500 / portTICK_RATE_MS)
+#define LED_TASK_OFF_DELAY        (1000 / portTICK_RATE_MS)
 #define TICK_TASK_DELAY			  (500 / portTICK_RATE_MS)
 //@}
 
@@ -70,9 +71,6 @@
  * The extension header to use is configured with \ref OLED1_EXT_HEADER.
  */
 static OLED1_CREATE_INSTANCE(oled1, OLED1_EXT_HEADER);
-
-
-
 
 //! \name Tasks for demo
 //@{
@@ -89,6 +87,8 @@ static void tick_task(void *params);
  * \ref edbg_cdc_rx_group instance for reception, then creates all
  * the objects for FreeRTOS to run the demo.
  */
+
+
 void demotasks_init(void)
 {
 	// Initialize hardware for the OLED1 Xplained Pro driver instance
@@ -131,8 +131,6 @@ void demotasks_init(void)
  */
 static void led_task_on(void *params)
 {
-	portTickType xNextWakeTime;
-	xNextWakeTime = xTaskGetTickCount();
 
 	for(;;) {
 		oled1_set_led_state(&oled1, OLED1_LED2_ID, true);
@@ -144,8 +142,6 @@ static void led_task_on(void *params)
 
 static void led_task_off(void *params)
 {
-	portTickType xNextWakeTime;
-	xNextWakeTime = xTaskGetTickCount();
 
 	for(;;) {
 		oled1_set_led_state(&oled1, OLED1_LED2_ID, false);
@@ -158,19 +154,20 @@ static void led_task_off(void *params)
 
 static void tick_task(void *params)
 {
-	TickType_t starttick = xTaskGetTickCount();
+	//TickType_t starttick = xTaskGetTickCount();
 	vTaskDelay(5000);
-	TickType_t endtick = xTaskGetTickCount();
+	//TickType_t endtick = xTaskGetTickCount();
 	
-	int i = 0;
+	//int i = 0;
 	//printf("Test");
 	//printf("msec2ticks:%u ticksn", (uint16_t)(endtick-starttick));
 	//vPrintString("Test");
 	for(;;) {
 		oled1_set_led_state(&oled1, OLED1_LED2_ID, false);
-		str[6] = i + '0';
-		while (USART_Send(USART6, str,strlen(str), NON_BLOCKING) < 0);
-		i = (i +1) % 10;
+		//str[6] = i + '0';
+		//while (USART_Send(USART6, str,strlen(str), NON_BLOCKING) < 0);
+		//i = (i +1) % 10;
 		vTaskDelay(TICK_TASK_DELAY);
 	}
 }
+
