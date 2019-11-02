@@ -43,7 +43,7 @@
 
 #include <asf.h>
 #include <conf_demo.h>
-
+#include <string.h>
 #include "demotasks.h"
 
 /**
@@ -116,16 +116,18 @@ void uart_init(uint32_t baud)
 	
 }
 
-void serialRead(uint16_t *const buffer){
+void serialRead(char *const buffer){
 	 
-	 if (usart_read_wait(&usart_instance, buffer) == STATUS_OK) {
+	int string_length = strlen(buffer);
+	 if (usart_read_buffer_job(&usart_instance, buffer,string_length) == STATUS_OK) {
 		 
 	 }
  }
 
-void serialWrite(uint16_t *const buffer) {
+void serialWrite(char* buffer) {
 
-	 if (usart_write_wait(&usart_instance, buffer) == STATUS_OK) { 
+	int string_length = 128;
+	 if (usart_write_buffer_job(&usart_instance, buffer, string_length) == STATUS_OK) { 
 	 }
 }
 
@@ -174,7 +176,7 @@ static void led_task_on(void *params)
 {
 
 	for(;;) {
-		serialWrite((uint16_t) "Test"); 
+		serialWrite("Tesst\t\n");
 		oled1_set_led_state(&oled1, OLED1_LED2_ID, true);
 
 		vTaskDelay(LED_TASK_ON_DELAY);
@@ -187,9 +189,6 @@ static void led_task_off(void *params)
 
 	for(;;) {
 		oled1_set_led_state(&oled1, OLED1_LED2_ID, false);
-		
-
-
 		vTaskDelay(LED_TASK_OFF_DELAY);
 	}
 }
