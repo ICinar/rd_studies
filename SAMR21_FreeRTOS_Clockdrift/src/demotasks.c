@@ -56,12 +56,10 @@
 //! \name Task configuration
 //@{
 
-#define LED_TASK_ON_PRIORITY      (tskIDLE_PRIORITY + 1)
-#define LED_TASK_ON_DELAY         (2000 / portTICK_RATE_MS)
-#define LED_TASK_OFF_PRIORITY     (tskIDLE_PRIORITY + 2)
-#define TICK_TASK_PRIORITY		  (tskIDLE_PRIORITY + 3) 
-#define LED_TASK_OFF_DELAY        (1000 / portTICK_RATE_MS)
-#define TICK_TASK_DELAY			  (500 / portTICK_RATE_MS)
+
+
+#define TICK_TASK_PRIORITY		  (tskIDLE_PRIORITY + 1) 
+#define TICK_TASK_DELAY			  (2000 / portTICK_RATE_MS)
 //@}
 
 
@@ -76,8 +74,6 @@ static OLED1_CREATE_INSTANCE(oled1, OLED1_EXT_HEADER);
 //! \name Tasks for demo
 //@{
 
-static void led_task_on(void *params);
-static void led_task_off(void *params);
 static void tick_task(void *params);
 
 
@@ -89,7 +85,6 @@ static void tick_task(void *params);
  * the objects for FreeRTOS to run the demo.
  */
 
-#define CONF_STDIO_USART_MODULE  EDBG_CDC_MODULE
 
 struct usart_module usart_instance;
 
@@ -108,23 +103,47 @@ void uart_init(uint32_t baud)
 	config_usart.pinmux_pad1 = EDBG_CDC_SERCOM_PINMUX_PAD1;
 	config_usart.pinmux_pad2 = EDBG_CDC_SERCOM_PINMUX_PAD2;
 	config_usart.pinmux_pad3 = EDBG_CDC_SERCOM_PINMUX_PAD3;	
-	 stdio_serial_init(&usart_instance, CONF_STDIO_USART_MODULE, &config_usart);
+	 stdio_serial_init(&usart_instance, EDBG_CDC_MODULE, &config_usart);
 	 usart_enable(&usart_instance);	
 	
 }
 
-void serialRead(char *const buffer){
-	 
-	int string_length = strlen(buffer);
-	 if (usart_read_buffer_job(&usart_instance, buffer,string_length) == STATUS_OK) {
-		 
-	 }
+void serialClear(void){
+	usart_write_buffer_wait(&usart_instance, (uint8_t *)"\033[2J", 4);
+	usart_write_buffer_wait(&usart_instance, (uint8_t *)"\033[0;0H", 6);
+}
+
+void serialRead(char* buffer, uint16_t length){
+	for(uint8_t i = 0; i < length; i++) {
+		
+		char tempStr[2] ={0,0};
+		uint16_t temp;
+		bool loop = true;
+		uint8_t char_;
+		
+		while(loop){
+			if (usart_read_wait(&usart_instance, &temp) == STATUS_OK) {
+				char_ = temp;
+				if ((char_ >= 'A' && char_ <= 'Z') ||
+				    (char_ >= '0' && char_ <= '9') ||
+				    (char_ >= 'a' && char_ <= 'z'))
+				{
+					usart_write_wait(&usart_instance, char_);
+					tempStr[0] = char_;
+					strcat(buffer, tempStr);
+				} else if(char_ == '\n'|| char_ == '\r') {
+					loop = false;
+				}
+			}
+		}
+		usart_write_wait(&usart_instance, '\n');
+		usart_write_wait(&usart_instance, '\r');
+
  }
+}
 
-void serialWrite(char* buffer) {
-
-	int string_length = 128;
-	 if (usart_write_buffer_job(&usart_instance, buffer, string_length) == STATUS_OK) { 
+void serialWrite(char* buffer, uint16_t length) {
+	 if (usart_write_buffer_wait(&usart_instance, (uint8_t *)buffer, length) == STATUS_OK) { 
 	 }
 }
 
@@ -132,80 +151,34 @@ void demotasks_init(void)
 {
 	// Initialize hardware for the OLED1 Xplained Pro driver instance
 	oled1_init(&oled1);
-	uart_init(115200);
-	xTaskCreate(led_task_on,
-			(const char *) "LED-ON\n",
-			configMINIMAL_STACK_SIZE,
-			NULL,
-			LED_TASK_ON_PRIORITY,
-			NULL);
-
-	xTaskCreate(led_task_off,
-			(const char *) "LED-OFF\n",
-			configMINIMAL_STACK_SIZE,
-			NULL,
-			LED_TASK_OFF_PRIORITY,
-			NULL);
-	
 	xTaskCreate(tick_task,
-			(const char *) "TICK\n",
+			(const char *) "TICK",
 			configMINIMAL_STACK_SIZE,
 			NULL,
 			TICK_TASK_PRIORITY,
 			NULL);
 
 }
-/**
- * \brief Main demo task
- *
- * This task keeps track of which screen the user has selected, which tasks
- * to resume/suspend to draw the selected screen, and also draws the menu bar.
- *
- * The menu bar shows which screens the user can select by clicking the
- * corresponding buttons on the OLED1 Xplained Pro:
- * - \ref graph_task() "graph" (selected at start-up)
- * - \ref terminal_task() "term."
- * - \ref about_task() "about"
- *
- * \param params Parameters for the task. (Not used.)
- */
-static void led_task_on(void *params)
-{
-
-	for(;;) {
-		serialWrite(" ");
-		oled1_set_led_state(&oled1, OLED1_LED2_ID, true);
-
-		vTaskDelay(LED_TASK_ON_DELAY);
-	}
-}
 
 
-static void led_task_off(void *params)
-{
-
-	for(;;) {
-		oled1_set_led_state(&oled1, OLED1_LED2_ID, false);
-		vTaskDelay(LED_TASK_OFF_DELAY);
-	}
-}
+/* defined TASKS for FreeRTOS */
 
 static void tick_task(void *params)
 {
-	//TickType_t starttick = xTaskGetTickCount();
-	vTaskDelay(5000);
-	//TickType_t endtick = xTaskGetTickCount();
+	TickType_t starttick = xTaskGetTickCount();
+	delay_ms(1000);
+	TickType_t endtick = xTaskGetTickCount();
+	uart_init(115200);	
+	char* diff = endtick - starttick;
+		
 	
-	//int i = 0;
-	//printf("Test");
-	//printf("msec2ticks:%u ticksn", (uint16_t)(endtick-starttick));
-	//vPrintString("Test");
 	for(;;) {
-		oled1_set_led_state(&oled1, OLED1_LED2_ID, false);
-		//str[6] = i + '0';
-		//while (USART_Send(USART6, str,strlen(str), NON_BLOCKING) < 0);
-		//i = (i +1) % 10;
+
+		//sprintf(bufferR, "Tick = %un", diff);
+		oled1_set_led_state(&oled1, OLED1_LED2_ID, true);
+		serialClear();
+		//serialWrite((uint8_t*)"Dies ist ein Test\n",sizeof("Dies ist ein Test\n"));
+		serialWrite(diff,sizeof(diff));
 		vTaskDelay(TICK_TASK_DELAY);
 	}
 }
-
