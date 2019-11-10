@@ -24,7 +24,6 @@
 #include "stm32f4xx.h"
 #include "FreeRTOS.h"
 #include "task.h"
-#include <string.h>
 #include "stm32_hal_legacy.h"
 
 /* USER CODE BEGIN Includes */
@@ -202,11 +201,18 @@ static void MX_USART1_UART_Init(void)
 
 void UART_TransmitText_Task(void const *argument)
 {
+	TickType_t start = xTaskGetTickCount();
+	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+	TickType_t end = xTaskGetTickCount();
+	
 	for (;;) {
 
-		char message[] = "Teschzt\r\n";
-		HAL_UART_Transmit(&huart1, (uint8_t*)message, strlen(message), 1000);
-		vTaskDelay(1000);
+		char message[2];
+		sprintf(message, "%lu\n", start-end);
+		HAL_UART_Transmit(&huart1, (uint8_t *)"\033[2J", 4,1000);
+		HAL_UART_Transmit(&huart1, (uint8_t *)"\033[0;0H", 6,1000);
+		HAL_UART_Transmit(&huart1, (uint8_t*)message, sizeof(message)+1, 1000);
+		vTaskDelay(3000);
 	}
 	
 } 
