@@ -45,6 +45,7 @@
 #include <conf_demo.h>
 #include <stdio_serial.h>
 #include <string.h>
+#include <time.h>
 #include "demotasks.h"
 
 /**
@@ -169,16 +170,15 @@ static void tick_task(void *params)
 	delay_ms(1000);
 	TickType_t endtick = xTaskGetTickCount();
 	uart_init(115200);	
-	char* diff = endtick - starttick;
-		
-	
+	uint32_t diff = endtick - starttick;
+	char buf[2];
+	sprintf(buf,"%lu\n", diff);
 	for(;;) {
 
 		//sprintf(bufferR, "Tick = %un", diff);
 		oled1_set_led_state(&oled1, OLED1_LED2_ID, true);
 		serialClear();
-		//serialWrite((uint8_t*)"Dies ist ein Test\n",sizeof("Dies ist ein Test\n"));
-		serialWrite(diff,sizeof(diff));
+		serialWrite(buf,sizeof(buf)+1);
 		vTaskDelay(TICK_TASK_DELAY);
 	}
 }
