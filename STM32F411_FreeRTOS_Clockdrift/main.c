@@ -25,6 +25,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "stm32_hal_legacy.h"
+#include <stdio.h>
 
 /* USER CODE BEGIN Includes */
 
@@ -61,7 +62,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 UART_HandleTypeDef huart1;
-
+RTC_HandleTypeDef hrtc;
 
 /* USER CODE BEGIN PV */
 
@@ -71,8 +72,10 @@ UART_HandleTypeDef huart1;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART1_UART_Init(void);
+static void MX_RTC_Init(void);
 void LED_BLINK_Task(void const * argument);
 void UART_TransmitText_Task(void const * argument);
+void UART_TransmitA_Task(void const * argument);
 void Error_Handler(void);
 /* USER CODE BEGIN PFP */
 
@@ -98,9 +101,14 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART1_UART_Init();
+  MX_RTC_Init();
+	
+  HAL_RTC_MspInit(&hrtc);
+  HAL_RTC_Init(&hrtc); 
   // Start scheduler
  // xTaskCreate((void *)LED_BLINK_Task, "Task 1", configMINIMAL_STACK_SIZE, NULL, 1, NULL );
-  xTaskCreate((void *)UART_TransmitText_Task, "Task 1", configMINIMAL_STACK_SIZE, NULL, 1, NULL );
+  xTaskCreate((void *)UART_TransmitText_Task, "Task 1", configMINIMAL_STACK_SIZE, NULL, 2, NULL );
+  xTaskCreate((void *)UART_TransmitA_Task, "Task 2", configMINIMAL_STACK_SIZE, NULL, 1, NULL );
   vTaskStartScheduler();
 
   
@@ -110,8 +118,6 @@ int main(void)
   for(;;);
 
 }
-
-
 
 void LED_BLINK_Task(void const *argument)
 {
@@ -128,43 +134,45 @@ void LED_BLINK_Task(void const *argument)
   */
 void SystemClock_Config(void)
 {
-  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
-  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+RCC_ClkInitTypeDef RCC_ClkInitStruct;
+  RCC_OscInitTypeDef RCC_OscInitStruct;
 
-  /** Configure the main internal regulator output voltage 
-  */
+  /* Enable Power Control clock */
   __HAL_RCC_PWR_CLK_ENABLE();
-	
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
-  /** Initializes the CPU, AHB and APB busses clocks 
-  */
+  
+  /* The voltage scaling allows optimizing the power consumption when the device is 
+     clocked below the maximum system frequency, to update the voltage scaling value 
+     regarding system frequency refer to product datasheet.  */
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
+  
+  /* Enable HSI Oscillator and activate PLL with HSI as source */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.HSICalibrationValue = 0x10;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
   RCC_OscInitStruct.PLL.PLLM = 16;
-  RCC_OscInitStruct.PLL.PLLN = 336;
+  RCC_OscInitStruct.PLL.PLLN = 400;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV4;
-  RCC_OscInitStruct.PLL.PLLQ = 4;
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  RCC_OscInitStruct.PLL.PLLQ = 7;
+  if(HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
   }
-  /** Initializes the CPU, AHB and APB busses clocks 
-  */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  
+  /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 
+     clocks dividers */
+  RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
-
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;  
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;  
+  if(HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_3) != HAL_OK)
   {
     Error_Handler();
   }
 }
+
 
 /**
   * @brief USART1 Initialization Function
@@ -199,24 +207,91 @@ static void MX_USART1_UART_Init(void)
 
 }
 
+static void MX_RTC_Init(void)
+{
+
+	
+	hrtc.Instance = RTC;
+	hrtc.Init.HourFormat = RTC_HOURFORMAT_24;
+	hrtc.Init.AsynchPrediv = 127;
+	hrtc.Init.SynchPrediv = 255;
+	hrtc.Init.OutPut = RTC_OUTPUT_DISABLE;
+	hrtc.Init.OutPutPolarity = RTC_OUTPUT_POLARITY_HIGH;
+	hrtc.Init.OutPutType = RTC_OUTPUT_TYPE_OPENDRAIN;
+	
+	if (HAL_RTC_Init(&hrtc) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	
+	
+	/* Configure Time now */
+	RTC_TimeTypeDef sTime;
+	RTC_DateTypeDef sDate;
+	//RTC_AlarmTypeDef sAlarm;
+	
+	/*set Time: 02:00:00 */
+	sTime.Hours = 0x02;
+	sTime.Minutes = 0x00;
+	sTime.Seconds = 0x00;
+	sTime.SubSeconds = 0;
+	sTime.TimeFormat = RTC_HOURFORMAT12_AM;
+	sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+	sTime.StoreOperation = RTC_STOREOPERATION_RESET;
+	if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BCD) != HAL_OK) {
+		Error_Handler();	
+	}
+	
+	sDate.WeekDay = RTC_WEEKDAY_FRIDAY;
+	sDate.Month = RTC_MONTH_MARCH;
+	sDate.Date = 0x15;
+	sDate.Year = 0x13;
+	if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BCD) != HAL_OK) {
+		Error_Handler();	
+	}
+	
+	
+
+	HAL_RTCEx_BKUPWrite(&hrtc,RTC_BKP_DR0,0x32F2);
+
+}
+
+
+TickType_t start;
+TickType_t end;
+TickType_t result;
+
 void UART_TransmitText_Task(void const *argument)
 {
-	TickType_t start = xTaskGetTickCount();
-	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-	TickType_t end = xTaskGetTickCount();
-	
 	for (;;) {
+		start = xTaskGetTickCount();
+		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 
-		char message[2];
-		sprintf(message, "%lu\n", start-end);
-		HAL_UART_Transmit(&huart1, (uint8_t *)"\033[2J", 4,1000);
-		HAL_UART_Transmit(&huart1, (uint8_t *)"\033[0;0H", 6,1000);
-		HAL_UART_Transmit(&huart1, (uint8_t*)message, sizeof(message)+1, 1000);
-		vTaskDelay(3000);
+		vTaskDelay(1000);
 	}
 	
 } 
 
+void UART_TransmitA_Task(void const *argument)
+{
+	RTC_TimeTypeDef currTime;
+	RTC_DateTypeDef currDate;
+	uint8_t sec[12] = {0};
+	for (;;) {
+		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+		//HAL_RTC_WaitForSynchro(&hrtc);
+		HAL_RTC_GetTime(&hrtc, &currTime, RTC_FORMAT_BIN);
+		HAL_RTC_GetDate(&hrtc, &currDate, RTC_FORMAT_BIN);
+		sprintf((char*)sec, "%02d:%02d:%02d", currTime.Hours, currTime.Minutes, currTime.Seconds);
+
+		HAL_GPIO_WritePin(GPIOA,USART_TX_Pin,GPIO_PIN_SET);
+		HAL_UART_Transmit(&huart1, (uint8_t *)"\033[2J", 4,1000);
+		HAL_UART_Transmit(&huart1, (uint8_t *)"\033[0;0H", 6,1000);
+		HAL_UART_Transmit(&huart1, (uint8_t *)sec, sizeof(sec), 1000);
+		HAL_GPIO_WritePin(GPIOA,USART_TX_Pin,GPIO_PIN_RESET);
+		vTaskDelay(1000);
+	}
+}
 /**
   * @brief GPIO Initialization Function
   * @param None

@@ -19,7 +19,6 @@ INCLUDE+=-I$(CURDIR)/Libraries/STM32F4xx_StdPeriph_Driver/inc
 INCLUDE+=-I$(CURDIR)/Libraries/STM32F4xx_StdPeriph_Driver/inc/Legacy
 INCLUDE+=-I$(CURDIR)/Libraries/CMSIS/Device/ST/STM32F4xx/Include
 INCLUDE+=-I$(CURDIR)/Libraries/CMSIS/Include
-INCLUDE+=-I$(CURDIR)/Libraries/STM32F4xx_StdPeriph_Driver/inc
 INCLUDE+=-I$(CURDIR)/config
 INCLUDE+= -I$(CURDIR)/FreeRTOS/include
 
@@ -48,7 +47,7 @@ SRC+=queue.c
 SRC+=tasks.c
 SRC+=event_groups.c
 SRC+=timers.c
-SRC+=heap_2.c
+SRC+=heap_3.c
 
 # Standard Peripheral Source Files
 SRC+=stm32f4xx_hal.c
