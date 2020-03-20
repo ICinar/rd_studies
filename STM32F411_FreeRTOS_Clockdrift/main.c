@@ -276,19 +276,21 @@ void UART_TransmitA_Task(void const *argument)
 {
 	RTC_TimeTypeDef currTime;
 	RTC_DateTypeDef currDate;
-	uint8_t sec[12] = {0};
+	uint8_t sec[18] = {0};
+	int i = 0;
 	for (;;) {
 		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 		//HAL_RTC_WaitForSynchro(&hrtc);
 		HAL_RTC_GetTime(&hrtc, &currTime, RTC_FORMAT_BIN);
 		HAL_RTC_GetDate(&hrtc, &currDate, RTC_FORMAT_BIN);
-		sprintf((char*)sec, "%02d:%02d:%02d", currTime.Hours, currTime.Minutes, currTime.Seconds);
-
-		HAL_GPIO_WritePin(GPIOA,USART_TX_Pin,GPIO_PIN_SET);
+		i = i+1;
+		sprintf((char*)sec, "TIME%d: %02d:%02d:%02d",i, currTime.Hours, currTime.Minutes, currTime.Seconds);
+		
+		//HAL_GPIO_WritePin(GPIOA,USART_TX_Pin,GPIO_PIN_SET);
 		HAL_UART_Transmit(&huart1, (uint8_t *)"\033[2J", 4,1000);
 		HAL_UART_Transmit(&huart1, (uint8_t *)"\033[0;0H", 6,1000);
-		HAL_UART_Transmit(&huart1, (uint8_t *)sec, sizeof(sec), 1000);
-		HAL_GPIO_WritePin(GPIOA,USART_TX_Pin,GPIO_PIN_RESET);
+		HAL_UART_Transmit(&huart1, sec, sizeof(sec), 1000);
+		//HAL_GPIO_WritePin(GPIOA,USART_TX_Pin,GPIO_PIN_RESET);
 		vTaskDelay(1000);
 	}
 }
