@@ -76,7 +76,7 @@ static OLED1_CREATE_INSTANCE(oled1, OLED1_EXT_HEADER);
 //@{
 
 static void tick_task(void *params);
-
+static void tock_task(void *params);
 
 /**
  * \brief Initialize tasks and resources for demo
@@ -88,10 +88,10 @@ static void tick_task(void *params);
 
 
 struct usart_module usart_instance;
+struct rtc_module rtc_instance;
 
 
-
-
+// These are the initializing part
 
 void uart_init(uint32_t baud)
 {
@@ -108,6 +108,38 @@ void uart_init(uint32_t baud)
 	 usart_enable(&usart_instance);	
 	
 }
+
+void rtc_init()
+{
+	struct rtc_count_config config_rtc_count;
+	
+	rtc_count_get_config_defaults(&config_rtc_count);
+    config_rtc_count.prescaler = RTC_COUNT_PRESCALER_DIV_1;
+    config_rtc_count.mode = RTC_COUNT_MODE_16BIT;
+	#ifdef FEATURE_RTC_CONTINUOUSLY_UPDATED
+		config_rtc_count.continuously_update = true;
+	#endif
+    config_rtc_count.compare_values[0] = 1000;	
+    rtc_count_init(&rtc_instance, RTC, &config_rtc_count);
+    rtc_count_enable(&rtc_instance);
+}
+
+void demotasks_init(void)
+{
+	// Initialize hardware for the OLED1 Xplained Pro driver instance
+	oled1_init(&oled1);
+	rtc_init();
+	uart_init(115200);	
+	xTaskCreate(tick_task,
+			(const char *) "TICK",
+			configMINIMAL_STACK_SIZE,
+			NULL,
+			TICK_TASK_PRIORITY,
+			NULL);
+
+}
+
+// these are the serial declaration for console or terminal
 
 void serialClear(void){
 	usart_write_buffer_wait(&usart_instance, (uint8_t *)"\033[2J", 4);
@@ -148,37 +180,29 @@ void serialWrite(char* buffer, uint16_t length) {
 	 }
 }
 
-void demotasks_init(void)
-{
-	// Initialize hardware for the OLED1 Xplained Pro driver instance
-	oled1_init(&oled1);
-	xTaskCreate(tick_task,
-			(const char *) "TICK",
-			configMINIMAL_STACK_SIZE,
-			NULL,
-			TICK_TASK_PRIORITY,
-			NULL);
 
-}
 
 
 /* defined TASKS for FreeRTOS */
 
 static void tick_task(void *params)
 {
-	TickType_t starttick = xTaskGetTickCount();
-	delay_ms(1000);
-	TickType_t endtick = xTaskGetTickCount();
-	uart_init(115200);	
-	uint32_t diff = endtick - starttick;
-	char buf[2];
-	sprintf(buf,"%lu\n", diff);
-	for(;;) {
 
+	uint32_t diff = 0;
+	rtc_count_set_period(&rtc_instance, 2000);
+	for(;;) {
+	    diff = rtc_count_get_count(&rtc_instance);
+		char buf[32];
+		sprintf(buf,"%lu",diff);
 		//sprintf(bufferR, "Tick = %un", diff);
 		oled1_set_led_state(&oled1, OLED1_LED2_ID, true);
 		serialClear();
 		serialWrite(buf,sizeof(buf)+1);
 		vTaskDelay(TICK_TASK_DELAY);
 	}
+}
+
+static void tock_task(void *params)
+{
+	
 }
